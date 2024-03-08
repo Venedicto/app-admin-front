@@ -7,9 +7,14 @@ import {
 	AiOutlineShop,
 	AiFillShop,
 } from "react-icons/ai";
+import { BsFillGridFill } from "react-icons/bs";
+
+import {} from "react-icons/io";
 import Link from "next/link";
+import { useRouter } from "next/router";
 export default function DAHSBOARD() {
 	const { signOut } = useAuth();
+	const router = useRouter();
 	return (
 		<div className="bg-primary min-h-screen">
 			<div className="h-20 shadow-xl relative px-10 flex justify-end items-center">
@@ -17,8 +22,11 @@ export default function DAHSBOARD() {
 					Winap Admin
 				</h1>
 				<AiOutlineLogout
-					className="hover:scale-110 transition-all ease-in-out cursor-pointer justi"
-					onClick={() => signOut()}
+					className="hover:scale-110 transition-all ease-in-out cursor-pointer z-10"
+					onClick={() => {
+						signOut();
+						router.push("/");
+					}}
 					color="#fff"
 					size={30}
 				/>
@@ -37,7 +45,7 @@ export default function DAHSBOARD() {
 					href="/dashboard/categories"
 					className="h-36 mx-auto bg-white md:w-2/6 mt-4 w-5/6 border-2 rounded-xl flex flex-col items-center justify-center shadow-2xl cursor-pointer transition-all ease-in hover:scale-105"
 				>
-					<AiFillSetting size={100} className="text-primary" />
+					<BsFillGridFill size={100} className="text-primary" />
 					<p className="text-primary mt-2">Categorias</p>
 				</Link>
 				<Link

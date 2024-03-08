@@ -2,6 +2,7 @@ import { useAuth } from "@clerk/nextjs";
 import { Input } from "@nextui-org/react";
 import WithLoading from "@venedicto/ui-library/dist/components/WithLoading";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { IoMdArrowBack } from "react-icons/io";
@@ -13,6 +14,7 @@ export default function settings() {
 	const changePoint = api.api.saveConfig.useMutation();
 	const [point, setPoint] = React.useState(20);
 	const [change, setChange] = React.useState(false);
+	const router = useRouter();
 
 	useEffect(() => {
 		if (config.data) {
@@ -34,7 +36,10 @@ export default function settings() {
 				</h1>
 				<AiOutlineLogout
 					className="hover:scale-110 transition-all ease-in-out cursor-pointer justi"
-					onClick={() => signOut()}
+					onClick={() => {
+						signOut();
+						router.push("/");
+					}}
 					color="#fff"
 					size={30}
 				/>

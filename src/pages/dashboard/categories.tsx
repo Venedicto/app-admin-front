@@ -10,12 +10,14 @@ import { IoMdArrowBack, IoMdAdd, IoMdTrash } from "react-icons/io";
 import { api } from "~/utils/api";
 import { Input } from "@nextui-org/react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 export default function categories() {
 	const { signOut } = useAuth();
 	const modal = useModal();
 	const deleteModal = useModal();
 	const [text, setText] = React.useState("");
+	const router = useRouter();
 
 	const { data, isError, isFetching, refetch } =
 		api.api.getCategories.useQuery();
@@ -57,7 +59,10 @@ export default function categories() {
 				</h1>
 				<AiOutlineLogout
 					className="hover:scale-110 transition-all ease-in-out cursor-pointer justi"
-					onClick={() => signOut()}
+					onClick={() => {
+						signOut();
+						router.push("/");
+					}}
 					color="#fff"
 					size={30}
 				/>

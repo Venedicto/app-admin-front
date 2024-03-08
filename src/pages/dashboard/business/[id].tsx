@@ -2,6 +2,7 @@ import { useAuth } from "@clerk/nextjs";
 import WithLoading from "@venedicto/ui-library/dist/components/WithLoading";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 import React from "react";
 import { AiOutlineLogout } from "react-icons/ai";
 import { IoMdArrowBack } from "react-icons/io";
@@ -13,6 +14,7 @@ export default function detailsBusiness() {
 	const { isError, isLoading, data, refetch } = api.api.getBusiness.useQuery({
 		id: parseInt(params?.id?.toString() ?? ""),
 	});
+	const router = useRouter();
 	const { mutate } = api.api.changeStatus.useMutation({
 		onSuccess: () => {
 			refetch();
@@ -36,7 +38,10 @@ export default function detailsBusiness() {
 				</h1>
 				<AiOutlineLogout
 					className="hover:scale-110 transition-all ease-in-out cursor-pointer justi"
-					onClick={() => signOut()}
+					onClick={() => {
+						signOut();
+						router.push("/");
+					}}
 					color="#fff"
 					size={30}
 				/>

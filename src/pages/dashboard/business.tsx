@@ -5,10 +5,12 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { IoMdArrowBack } from "react-icons/io";
 import { api } from "~/utils/api";
 import WithLoading from "@venedicto/ui-library/dist/components/WithLoading";
+import { useRouter } from "next/router";
 
 export default function business() {
 	const { signOut } = useAuth();
 	const { isError, isLoading, data } = api.api.getBusinesses.useQuery();
+	const router = useRouter();
 	return (
 		<div className="bg-primary">
 			<div className="h-20 shadow-xl relative px-10 flex justify-between items-center">
@@ -24,7 +26,10 @@ export default function business() {
 				</h1>
 				<AiOutlineLogout
 					className="hover:scale-110 transition-all ease-in-out cursor-pointer justi"
-					onClick={() => signOut()}
+					onClick={() => {
+						signOut();
+						router.push("/");
+					}}
 					color="#fff"
 					size={30}
 				/>
