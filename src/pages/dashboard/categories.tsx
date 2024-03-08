@@ -117,7 +117,7 @@ export default function categories() {
 					/>
 				</div>
 			</Modal>
-
+			{/* @ts-ignore */}
 			<AreYouSure
 				title="Eliminar Categoria"
 				classNameBody="text-red-300"
